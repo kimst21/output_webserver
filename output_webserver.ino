@@ -1,5 +1,3 @@
-﻿
-
 //Wi-Fi라이브러리 로드
 #include <WiFi.h>
 
