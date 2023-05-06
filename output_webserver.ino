@@ -84,15 +84,15 @@ void loop(){
               Serial.println("GPIO 45 on");
               output26State = "on";
               digitalWrite(output45, HIGH);
-            } else if (header.indexOf("GET /26/off") >= 0) {
+            } else if (header.indexOf("GET /45/off") >= 0) {
               Serial.println("GPIO 45 off");
               output26State = "off";
               digitalWrite(output45, LOW);
-            } else if (header.indexOf("GET /27/on") >= 0) {
+            } else if (header.indexOf("GET /46/on") >= 0) {
               Serial.println("GPIO 46 on");
               output27State = "on";
               digitalWrite(output46, HIGH);
-            } else if (header.indexOf("GET /27/off") >= 0) {
+            } else if (header.indexOf("GET /46/off") >= 0) {
               Serial.println("GPIO 46 off");
               output27State = "off";
               digitalWrite(output46, LOW);
@@ -123,37 +123,37 @@ Helvetica 글꼴을 선택하고 콘텐츠를 블록으로 표시하고 중앙�
             // 현재상태표시, GPIO 45의 ON/OFF버튼 표시  
             client.println("<p>GPIO 45 - State " + output45State + "</p>");
             // 만약 output45State가 off이면  ON button으로 표시       
-            if (output26State=="off") {
+            if (output45State=="off") {
               client.println("<p><a href=\"/45/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/45/off\"><button class=\"button button2\">OFF</button></a></p>");
             } 
                
-            // Display current state, and ON/OFF buttons for GPIO 27  
-            client.println("<p>GPIO 27 - State " + output27State + "</p>");
-            // If the output27State is off, it displays the ON button       
-            if (output27State=="off") {
-              client.println("<p><a href=\"/27/on\"><button class=\"button\">ON</button></a></p>");
+            // 현재상태와 ON/OFF buttons(GPIO 46)를 표시한다 
+            client.println("<p>GPIO 46 - State " + output46State + "</p>");
+            // If the output46State is off, it displays the ON button       
+            if (output46State=="off") {
+              client.println("<p><a href=\"/46/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/27/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/46/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
             client.println("</body></html>");
             
-            // The HTTP response ends with another blank line
+            // The HTTP response가 다른 브랭크라인으로 끝난다 
             client.println();
-            // Break out of the while loop
+            // 루푸 탈출
             break;
-          } else { // if you got a newline, then clear currentLine
+          } else { //  newline이면 현재 라인을 클리어
             currentLine = "";
           }
-        } else if (c != '\r') {  // if you got anything else but a carriage return character,
-          currentLine += c;      // add it to the end of the currentLine
+        } else if (c != '\r') {  // carriage return character가 아닌 다른 글자를 받았다면
+          currentLine += c;      // currentLine의 끝부분에 붙인다
         }
       }
     }
-    // Clear the header variable
+    // 헤더변수를 클리어
     header = "";
-    // Close the connection
+    // 연결을 끊는다
     client.stop();
     Serial.println("Client disconnected.");
     Serial.println("");
