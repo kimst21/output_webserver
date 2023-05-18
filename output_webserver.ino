@@ -16,8 +16,8 @@ String output45State = "off";
 String output46State = "off";
 
 // LED1, LED2 GPIO
-const int output26 = 45;
-const int output27 = 46;
+const int output45 = 45;
+const int output46 = 46;
 
 // 현재시간
 unsigned long currentTime = millis();
@@ -82,19 +82,19 @@ void loop(){
             // GPIOs on and off
             if (header.indexOf("GET /45/on") >= 0) {
               Serial.println("GPIO 45 on");
-              output26State = "on";
+              output45State = "on";
               digitalWrite(output45, HIGH);
             } else if (header.indexOf("GET /45/off") >= 0) {
               Serial.println("GPIO 45 off");
-              output26State = "off";
+              output45State = "off";
               digitalWrite(output45, LOW);
             } else if (header.indexOf("GET /46/on") >= 0) {
               Serial.println("GPIO 46 on");
-              output27State = "on";
+              output46State = "on";
               digitalWrite(output46, HIGH);
             } else if (header.indexOf("GET /46/off") >= 0) {
               Serial.println("GPIO 46 off");
-              output27State = "off";
+              output46State = "off";
               digitalWrite(output46, LOW);
             }
 /*  ESP32는 웹 페이지를 구축하기 위해 일부 HTML 코드로 브라우저에 응답을 보냅니다.
