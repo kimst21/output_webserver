@@ -2,8 +2,8 @@
 #include <WiFi.h>
 
 // 공유기에 부여된 SSID와 패스워드를 입력
-const char* ssid = "U+NetE51C";
-const char* password = "DA9969P73#";
+const char* ssid = "";
+const char* password = "";
 
 // 웹서버 포트주소를 80
 WiFiServer server(80);
