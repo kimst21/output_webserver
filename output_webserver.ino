@@ -16,8 +16,8 @@ String output45State = "off";
 String output46State = "off";
 
 // LED1, LED2 GPIO
-const int output45 = 41;
-const int output46 = 42;
+const int output41 = 41;
+const int output42 = 42;
 
 // 현재시간
 unsigned long currentTime = millis();
@@ -29,11 +29,11 @@ const long timeoutTime = 2000;
 void setup() {
   Serial.begin(115200);
   // 변수들을 OUTPUT으로 정의
-  pinMode(output45, OUTPUT);
-  pinMode(output46, OUTPUT);
+  pinMode(output41, OUTPUT);
+  pinMode(output42, OUTPUT);
   // output을 0으로 셑
-  digitalWrite(output45, LOW);
-  digitalWrite(output46, LOW);
+  digitalWrite(output41, LOW);
+  digitalWrite(output42, LOW);
 
   // Wi-Fi network(SSID and password)연결을 시도
   Serial.print("Connecting to ");
@@ -80,22 +80,22 @@ void loop(){
 그에 따라 출력을 제어합니다. 이전에 본 것처럼 눌린 버튼에 따라 다른 URL에서
 요청을 합니다. */          
             // GPIOs on and off
-            if (header.indexOf("GET /45/on") >= 0) {
-              Serial.println("GPIO 45 on");
-              output45State = "on";
-              digitalWrite(output45, HIGH);
-            } else if (header.indexOf("GET /45/off") >= 0) {
-              Serial.println("GPIO 45 off");
-              output45State = "off";
+            if (header.indexOf("GET /41/on") >= 0) {
+              Serial.println("GPIO 41 on");
+              output41State = "on";
+              digitalWrite(output41, HIGH);
+            } else if (header.indexOf("GET /41/off") >= 0) {
+              Serial.println("GPIO 41 off");
+              output41State = "off";
               digitalWrite(output45, LOW);
-            } else if (header.indexOf("GET /46/on") >= 0) {
-              Serial.println("GPIO 46 on");
-              output46State = "on";
-              digitalWrite(output46, HIGH);
-            } else if (header.indexOf("GET /46/off") >= 0) {
-              Serial.println("GPIO 46 off");
-              output46State = "off";
-              digitalWrite(output46, LOW);
+            } else if (header.indexOf("GET /42/on") >= 0) {
+              Serial.println("GPIO 42 on");
+              output42State = "on";
+              digitalWrite(output42, HIGH);
+            } else if (header.indexOf("GET /42/off") >= 0) {
+              Serial.println("GPIO 42 off");
+              output42State = "off";
+              digitalWrite(output42, LOW);
             }
 /*  ESP32는 웹 페이지를 구축하기 위해 일부 HTML 코드로 브라우저에 응답을 보냅니다.
 client.println() 표현을 사용하여 웹 페이지가 클라이언트로 전송됩니다. 
@@ -121,21 +121,21 @@ Helvetica 글꼴을 선택하고 콘텐츠를 블록으로 표시하고 중앙�
             // 웹페이지 헤딩
             client.println("<body><h1>ESP32 Web Server</h1>");    
             // 현재상태표시, GPIO 45의 ON/OFF버튼 표시  
-            client.println("<p>GPIO 45 - State " + output45State + "</p>");
+            client.println("<p>GPIO 41 - State " + output41State + "</p>");
             // 만약 output45State가 off이면  ON button으로 표시       
             if (output45State=="off") {
-              client.println("<p><a href=\"/45/on\"><button class=\"button\">ON</button></a></p>");
+              client.println("<p><a href=\"/41/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/45/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/41/off\"><button class=\"button button2\">OFF</button></a></p>");
             } 
                
             // 현재상태와 ON/OFF buttons(GPIO 46)를 표시한다 
-            client.println("<p>GPIO 46 - State " + output46State + "</p>");
+            client.println("<p>GPIO 42 - State " + output42State + "</p>");
             // If the output46State is off, it displays the ON button       
-            if (output46State=="off") {
-              client.println("<p><a href=\"/46/on\"><button class=\"button\">ON</button></a></p>");
+            if (output42State=="off") {
+              client.println("<p><a href=\"/42/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/46/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/42/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
             client.println("</body></html>");
             
