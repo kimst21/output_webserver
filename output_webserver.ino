@@ -16,8 +16,8 @@ String output45State = "off";
 String output46State = "off";
 
 // LED1, LED2 GPIO
-const int output45 = 45;
-const int output46 = 46;
+const int output45 = 41;
+const int output46 = 42;
 
 // 현재시간
 unsigned long currentTime = millis();
